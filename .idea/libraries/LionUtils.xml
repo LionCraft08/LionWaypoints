@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="LionUtils">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../LionUtils/out/artifacts/LionUtils_jar/LionUtils.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

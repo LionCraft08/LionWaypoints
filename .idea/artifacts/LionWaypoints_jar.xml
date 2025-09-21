@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LionWaypoints:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LionWaypoints_jar</output-path>
+    <root id="archive" name="LionWaypoints.jar">
+      <element id="module-output" name="LionWaypoints" />
+    </root>
+  </artifact>
+</component>

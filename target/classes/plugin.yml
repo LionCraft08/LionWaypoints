@@ -1,0 +1,31 @@
+name: LionWaypoints
+version: '2.1'
+main: me.yourname.lionwaypoints.LionWaypoints
+api-version: '1.20'
+load: STARTUP
+commands:
+  wp:
+    description: Create and manage server-side Waypoints.
+    permission: lionwaypoints.request
+    aliases:
+        - waypoint
+    usage: /waypoint [get|remove|compass|xaero] <name>
+  pos:
+    description: An easier way to mark Positions in the World
+    usage: /pos <waypoint>
+
+permissions:
+  lionwaypoints.create:
+    description: Player can create Waypoints.
+    default: true
+    children:
+      lionwaypoints.request: true
+  lionwaypoints.request:
+    description: Player can get saved Waypoints.
+    default: true
+  lionwaypoints.compass:
+    description: Players can bind Waypoints to a Compass via Command
+    default: true
+softdepend:
+  - lionAPI
+  - LionUtils

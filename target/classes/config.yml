@@ -1,0 +1,18 @@
+display-settings:
+  #The distance until a display doesn't show the height distance
+  #The y-distance until a Waypoint is displayed and marked as reached
+  y-distance-buffer: 4.0
+
+  #The distance until a Waypoint is displayed and marked as reached
+  xz-distance-buffer: 10.0
+
+  #Might impact performance when playing with many players
+  allow-vanilla-tracker: true
+
+  #Requires LionDisplays Mod on clients, as the Direction is calculated client-side,
+  #this has no impact on performance but
+  #cannot mark Waypoints as reached on the Server
+  #(This Setting should only be important if LionWaypoints is used as an API as the Events aren't called when this Setting is active.)
+  allow-modded-tracker: true
+Waypointnames:
+  amount: 0
