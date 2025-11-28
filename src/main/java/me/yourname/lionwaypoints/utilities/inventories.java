@@ -128,7 +128,7 @@ public class inventories {
     }
     private static int getNextIndex(ItemStack is){
         int i = displaySlots.indexOf(is);
-        if (i >= displaySlots.size()){
+        if (i+1 >= displaySlots.size()){
             return 0;
         }
         return i+1;

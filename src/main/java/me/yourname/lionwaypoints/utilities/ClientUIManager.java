@@ -3,6 +3,7 @@ package me.yourname.lionwaypoints.utilities;
 import de.lioncraft.lionapi.LionAPI;
 import de.lioncraft.lionapi.guimanagement.guielements.GUIPlayerManager;
 import de.lioncraft.lionapi.guimanagement.lionclient.DisplayAttachment;
+import de.lioncraft.lionapi.guimanagement.lionclient.DisplayManager;
 import me.yourname.lionwaypoints.chat.MessageHandler;
 import me.yourname.lionwaypoints.data.Settings;
 import me.yourname.lionwaypoints.utilities.cd.ClientDisplay;
@@ -65,7 +66,9 @@ public class ClientUIManager implements Listener {
             case MOD -> {
                 if (Bukkit.getPluginManager().isPluginEnabled("lionAPI")) {
                     if (Settings.getInstance().isAllowModdedTracker()) {
-                        displayData(new ModdedDisplay(waypoint, p, 5, DisplayAttachment.TOP_LEFT));
+                        if(GUIPlayerManager.getRenderWay(p).equals(GUIPlayerManager.ClientRenderWay.LIONDISPLAYS_MOD))
+                            displayData(new ModdedDisplay(waypoint, p, 5, DisplayAttachment.TOP_LEFT));
+                        else MessageHandler.sendMessage("You need the Mod LionDisplays to do this!", p);
                     }
                 }
             }

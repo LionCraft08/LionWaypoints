@@ -1,5 +1,6 @@
 package me.yourname.lionwaypoints.listeners;
 
+import de.lioncraft.lionapi.guimanagement.guielements.GUIPlayerManager;
 import de.lioncraft.lionapi.guimanagement.lionclient.DisplayAttachment;
 import me.yourname.lionwaypoints.LionWaypoints;
 import me.yourname.lionwaypoints.chat.MessageHandler;
@@ -114,8 +115,11 @@ public class invClickListener implements Listener {
                     case "open_modded" -> {
                         String slot = getData(e.getClickedInventory().getItem(28));
                         int offset = Integer.parseInt(getData(e.getClickedInventory().getItem(34)));
-                        ClientUIManager.i().displayData(new ModdedDisplay(wp, (Player) e.getWhoClicked(), offset, DisplayAttachment.valueOf(slot)));
-                        e.getWhoClicked().closeInventory();
+                        Player p = (Player) e.getWhoClicked();
+                        if(GUIPlayerManager.getRenderWay(p).equals(GUIPlayerManager.ClientRenderWay.LIONDISPLAYS_MOD))
+                            ClientUIManager.i().displayData(new ModdedDisplay(wp, p, offset, DisplayAttachment.valueOf(slot)));
+                        else MessageHandler.sendMessage("You need the Mod LionDisplays to do this!", p);
+                        p.closeInventory();
                     }
                     case "display_slot" -> inventories.setNextItem(e.getClickedInventory());
                     case "display_offset" -> {

@@ -1,5 +1,6 @@
 package me.yourname.lionwaypoints.commands;
 
+import de.lioncraft.lionapi.messageHandling.lionchat.LionChat;
 import me.yourname.lionwaypoints.LionWaypoints;
 import me.yourname.lionwaypoints.chat.MessageHandler;
 import me.yourname.lionwaypoints.utilities.ClientUIManager;
@@ -114,7 +115,10 @@ public class wpCommand implements TabExecutor {
                         if (sender instanceof Player p){
                             switch (args[1]){
                                 case "toggle_visibility" -> {
-                                    ClientUIManager.i().toggleVisibility(p);
+                                    if (ClientUIManager.i().getCurrentDisplay(p) != null){
+                                        ClientUIManager.i().toggleVisibility(p);
+                                    }else MessageHandler.sendMessage("No Display was found!", p);
+
                                 }
                                 case "disable" -> ClientUIManager.i().endCurrentDisplay(p);
                                 default -> MessageHandler.sendMessage(Component.text("Usage: /wp remove|delete|compass|get|xaero|add <waypoint>"), sender);
@@ -130,15 +134,16 @@ public class wpCommand implements TabExecutor {
                 if(args[0].equals("add")){
                     createWaypoint(sender, args[1], args[2] , "0", "0", "");
                 }else if(args[0].equals("display")){
-                    waypoint wayp = waypoint.getWaypoint(args[2]);
-                    if(wayp == null){
-                        MessageHandler.sendMessage("This Waypoint does not exist!", sender);
-                        break;
-                    }
-                    if (sender instanceof Player p){
-                        ClientUIManager.i().displayData(p, wayp);
-                    }else MessageHandler.sendMessage(Component.text("Usage: /wp remove|delete|compass|get|xaero|add <waypoint>"), sender);
-
+                    if(args[1].equals("disable")){
+                        waypoint wayp = waypoint.getWaypoint(args[2]);
+                        if(wayp == null){
+                            MessageHandler.sendMessage("This Waypoint does not exist!", sender);
+                            break;
+                        }
+                        if (sender instanceof Player p){
+                            ClientUIManager.i().displayData(p, wayp);
+                        }else MessageHandler.sendMessage(Component.text("Usage: /wp remove|delete|compass|get|xaero|add <waypoint>"), sender);
+                    } else MessageHandler.sendMessage(Component.text("Usage: /wp remove|delete|compass|get|xaero|add <waypoint>"), sender);
                 } else{
                     MessageHandler.sendMessage(Component.text("Usage: /wp remove|delete|compass|get|xaero|add <waypoint>", TextColor.color(255, 90, 0)), sender);
                 }

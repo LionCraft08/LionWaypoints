@@ -70,5 +70,11 @@
             <version>1.20.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>de.lioncraft</groupId>
+            <artifactId>lionAPI</artifactId>
+            <version>1.10.6</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>
