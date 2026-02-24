@@ -1,6 +1,5 @@
 package me.yourname.lionwaypoints;
 
-import de.lioncraft.lionapi.guimanagement.Interaction.Button;
 import de.lioncraft.lionapi.guimanagement.Interaction.LionButtonFactory;
 import de.lioncraft.lionapi.guimanagement.Items;
 import de.lioncraft.lionapi.guimanagement.MainMenu;
@@ -21,12 +20,8 @@ import me.yourname.lionwaypoints.utilities.inventories;
 import me.yourname.lionwaypoints.utilities.waypoint;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -54,7 +49,7 @@ public final class LionWaypoints extends JavaPlugin{
         getCommand("wp").setExecutor(new wpCommand());
         getCommand("pos").setExecutor(new posCommand());
 
-        getServer().getPluginManager().registerEvents(new onChatMessage(), this);
+        getServer().getPluginManager().registerEvents(new ChatMessageListeners(), this);
         getServer().getPluginManager().registerEvents(new worldListeners(), this);
         getServer().getPluginManager().registerEvents(new invClickListener(), this);
         getServer().getPluginManager().registerEvents(ClientUIManager.getInstance(), this);

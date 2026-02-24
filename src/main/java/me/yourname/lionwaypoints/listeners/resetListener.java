@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class resetListener implements Listener {
+    @EventHandler
     public void onReset(PluginDataResetEvent e){
         waypoint.nameWaypoint.clear();
     }

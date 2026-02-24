@@ -2,7 +2,9 @@ package me.yourname.lionwaypoints.data;
 
 import me.yourname.lionwaypoints.LionWaypoints;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Location;
@@ -31,7 +33,7 @@ public class ButtonCreators {
         ButtonCreators b1 = new ButtonCreators();
         CloseButton = b1.CloseButton();
         BlockButtons = b1.block(54);
-        BackButton = b1.back("overview");
+        BackButton = back("overview");
         NextButton = b1.next();
         teleportButton = b1.tp();
         deleteButton = get(Component.text("DELETE", TextColor.color(255, 0, 0)), Material.RED_WOOL, "This waypoint will be gone forever (a very long time)");
@@ -111,7 +113,7 @@ public class ButtonCreators {
         ItemStack[] blocked = new ItemStack[size];
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta plmeta = placeholder.getItemMeta();
-        plmeta.setDisplayName("");
+        plmeta.displayName(Component.text(""));
         plmeta.setUnbreakable(true);
         plmeta.getPersistentDataContainer().set(namespacedKeys.CustomButton, PersistentDataType.STRING, "empty");
         placeholder.setItemMeta(plmeta);
@@ -121,11 +123,11 @@ public class ButtonCreators {
     public ItemStack ButtonON(String name){
         ItemStack button = new ItemStack(Material.LIME_DYE);
         ItemMeta bmeta = button.getItemMeta();
-        bmeta.setDisplayName(name);
-        List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.GREEN+"Currently enabled!");
-        lore.add(ChatColor.GREEN+"Click here to disable.");
-        bmeta.setLore(lore);
+        bmeta.displayName(Component.text(name));
+        List<Component> lore = new ArrayList<>();
+        lore.add(Component.text("Currently enabled!", NamedTextColor.GREEN));
+        lore.add(Component.text("Click here to disable.", NamedTextColor.GREEN));
+        bmeta.lore(lore);
         button.setItemMeta(bmeta);
         return button;
     }
@@ -133,7 +135,7 @@ public class ButtonCreators {
     public static ItemStack back(String inv){
         ItemStack b = new ItemStack(Material.ARROW);
         ItemMeta bm = b.getItemMeta();
-        bm.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "BACK");
+        bm.displayName(Component.text("BACK", NamedTextColor.GOLD, TextDecoration.BOLD));
         bm.getPersistentDataContainer().set(namespacedKeys.BackButton, PersistentDataType.STRING,inv);
         b.setItemMeta(bm);
         return b;

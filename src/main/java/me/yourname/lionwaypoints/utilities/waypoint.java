@@ -3,7 +3,9 @@ package me.yourname.lionwaypoints.utilities;
 import me.yourname.lionwaypoints.LionWaypoints;
 import me.yourname.lionwaypoints.data.namespacedKeys;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -125,18 +127,51 @@ public class waypoint {
         return is;
     }
     public void sendMessage(CommandSender player){
-        player.sendMessage(Component.text("|--" + getName() + "--", TextColor.color(255, 0, 255)));
-        player.sendMessage(Component.text("|- X:" + (int) location.getX(), TextColor.color(255, 0, 255)));
-        player.sendMessage(Component.text("|- Y:" + (int) location.getY(), TextColor.color(255, 0, 255)));
-        player.sendMessage(Component.text("|- Z:" + (int) location.getZ(), TextColor.color(255, 0, 255)));
-        player.sendMessage(Component.text("|- in " + location.getWorld().getName(), TextColor.color(255, 0, 255)));
+        sendLocationInfo(player, getName(), getLocation());
+        if(true) return;
+        player.sendMessage(Component.text("|--" + getName() + "--", TextColor.color(180, 0, 255)));
+        player.sendMessage(Component.text("|- X:" + (int) location.getX(), TextColor.color(180, 0, 255)));
+        player.sendMessage(Component.text("|- Y:" + (int) location.getY(), TextColor.color(180, 0, 255)));
+        player.sendMessage(Component.text("|- Z:" + (int) location.getZ(), TextColor.color(180, 0, 255)));
+        player.sendMessage(Component.text("|- in " + location.getWorld().getName(), TextColor.color(180, 0, 255)));
         if(player instanceof Player){
             if(((Player) player).getWorld().equals(location.getWorld())){
-                player.sendMessage(Component.text("|- " + (int) location.distance(((Player) player).getLocation()) + " Meters away", TextColor.color(255, 0, 255)));
+                player.sendMessage(Component.text("|- " + (int) location.distance(((Player) player).getLocation()) + " Meters away", TextColor.color(180, 0, 255)));
             }
         }
 
     }
+
+    public void sendLocationInfo(CommandSender player, String locationName, Location targetLoc) {
+        // 1. Calculate distance if worlds match
+        String distanceStr = "N/A";
+        if(player instanceof Player p){
+            if (targetLoc.getWorld() != null && targetLoc.getWorld().equals(p.getWorld())) {
+                double distance = p.getLocation().distance(targetLoc);
+                distanceStr = String.format("%.1f blocks", distance);
+            }
+        }
+
+
+        Component header = Component.text("📍 Location: ", NamedTextColor.GOLD)
+                .append(Component.text(locationName, NamedTextColor.YELLOW, TextDecoration.BOLD));
+
+        Component details = Component.text("\n  » ", NamedTextColor.GRAY)
+                .append(Component.text("Coords: ", NamedTextColor.WHITE))
+                .append(Component.text(String.format("%d, %d, %d",
+                        targetLoc.getBlockX(), targetLoc.getBlockY(), targetLoc.getBlockZ()), NamedTextColor.AQUA))
+                .append(Component.text("\n  » ", NamedTextColor.GRAY))
+                .append(Component.text("World: ", NamedTextColor.WHITE))
+                .append(Component.text(targetLoc.getWorld().getName(), NamedTextColor.GREEN))
+                .append(Component.text("\n  » ", NamedTextColor.GRAY))
+                .append(Component.text("Distance: ", NamedTextColor.WHITE))
+                .append(Component.text(distanceStr, NamedTextColor.DARK_PURPLE));
+
+        player.sendMessage(Component.text("---------------------------------", NamedTextColor.DARK_GRAY));
+        player.sendMessage(header.append(details));
+        player.sendMessage(Component.text("---------------------------------", NamedTextColor.DARK_GRAY));
+    }
+
     public String getXaeroMessage(){
         int i = new Random().nextInt(15);
         int x = (int) location.getX();

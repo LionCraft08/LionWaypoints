@@ -21,8 +21,11 @@ public class ModdedDisplay extends ClientDisplay {
 
     @Override
     protected void onEnable() {
-
-        DisplayManager.sendDisplayCompass(getPlayer(), "lionwaypoints_compass", offset, offset, attachment, (int) getWaypoint().getLocation().x(), (int) getWaypoint().getLocation().y(), (int) getWaypoint().getLocation().z());
+        try {
+            DisplayManager.sendDisplayCompass(getPlayer(), "lionwaypoints_compass", offset, offset, attachment, (int) getWaypoint().getLocation().x(), (int) getWaypoint().getLocation().y(), (int) getWaypoint().getLocation().z(), getWaypoint().getLocation().getWorld().getName());
+        }catch (Exception e){
+            DisplayManager.sendDisplayCompass(getPlayer(), "lionwaypoints_compass", offset, offset, attachment, (int) getWaypoint().getLocation().x(), (int) getWaypoint().getLocation().y(), (int) getWaypoint().getLocation().z());
+        }
     }
 
     @Override

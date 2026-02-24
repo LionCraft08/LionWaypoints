@@ -1,10 +1,8 @@
 package me.yourname.lionwaypoints.commands;
 
-import de.lioncraft.lionapi.messageHandling.lionchat.LionChat;
 import me.yourname.lionwaypoints.LionWaypoints;
 import me.yourname.lionwaypoints.chat.MessageHandler;
 import me.yourname.lionwaypoints.utilities.ClientUIManager;
-import me.yourname.lionwaypoints.utilities.cd.ClientDisplay;
 import me.yourname.lionwaypoints.utilities.inventories;
 import me.yourname.lionwaypoints.utilities.waypoint;
 import net.kyori.adventure.text.Component;
@@ -21,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -236,7 +235,7 @@ public class wpCommand implements TabExecutor {
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NonNull [] args) {
         List<String> Waypoints = new ArrayList<>();
         if (args.length == 1) {
             Waypoints.add("get");

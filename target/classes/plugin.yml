@@ -1,5 +1,5 @@
 name: LionWaypoints
-version: '2.1'
+version: '2.1.4'
 main: me.yourname.lionwaypoints.LionWaypoints
 api-version: '1.20'
 load: STARTUP
