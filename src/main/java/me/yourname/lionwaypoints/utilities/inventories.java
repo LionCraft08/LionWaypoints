@@ -115,12 +115,11 @@ public class inventories {
     }
 
     public static ItemStack getNumberedItem(int value){
-        ItemStack is = getItem(Component.text("Offset: "+value),
+        return getItem(Component.text("Offset: "+value),
                 Material.AMETHYST_SHARD,
                 "display_offset",
                 ""+value,
                 "Click to increase the offset"," (distance to the window frame)");
-        return is;
     }
 
     public static void setNextItem(Inventory inv){

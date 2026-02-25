@@ -1,9 +1,7 @@
 package me.yourname.lionwaypoints.utilities;
 
-import de.lioncraft.lionapi.LionAPI;
 import de.lioncraft.lionapi.guimanagement.guielements.GUIPlayerManager;
 import de.lioncraft.lionapi.guimanagement.lionclient.DisplayAttachment;
-import de.lioncraft.lionapi.guimanagement.lionclient.DisplayManager;
 import me.yourname.lionwaypoints.chat.MessageHandler;
 import me.yourname.lionwaypoints.data.Settings;
 import me.yourname.lionwaypoints.utilities.cd.ClientDisplay;
@@ -15,7 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 
 public class ClientUIManager implements Listener {
@@ -96,8 +93,7 @@ public class ClientUIManager implements Listener {
 
     public boolean hasActiveDisplay(Player p){
         if (!data.containsKey(p)) return false;
-        if (data.get(p).isEnabled()) return true;
-        return false;
+        return data.get(p).isEnabled();
     }
     private final HashMap<Player, ClientDisplay> data = new HashMap<>();
 

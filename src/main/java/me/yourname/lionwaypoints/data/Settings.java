@@ -1,7 +1,6 @@
 package me.yourname.lionwaypoints.data;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Settings {
     private static Settings instance;
@@ -45,11 +44,11 @@ public class Settings {
         this.allowModdedTracker = allowModdedTracker;
     }
 
-    public double getyDistance() {
+    public double getYDistance() {
         return yDistance;
     }
 
-    public void setyDistance(double yDistance) {
+    public void setYDistance(double yDistance) {
         this.yDistance = yDistance;
     }
 

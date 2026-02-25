@@ -26,7 +26,7 @@ import java.util.List;
 
 public class wpCommand implements TabExecutor {
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NonNull [] args) {
         switch (args.length){
             case 0:
                 if(sender instanceof Player){

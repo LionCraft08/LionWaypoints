@@ -1,6 +1,5 @@
 package me.yourname.lionwaypoints.utilities.cd;
 
-import io.papermc.paper.math.Position;
 import me.yourname.lionwaypoints.data.Settings;
 import me.yourname.lionwaypoints.utilities.waypoint;
 import net.kyori.adventure.bossbar.BossBar;
@@ -10,12 +9,10 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.util.Vector;
 
 public class VanillaDisplay extends ClientDisplay {
-    private BossBar bb;
+    private final BossBar bb;
     public VanillaDisplay(waypoint waypoint, Player p) {
         super(waypoint, p);
         bb = BossBar.bossBar(Component.text("Waiting"), 1.0f, BossBar.Color.YELLOW, BossBar.Overlay.NOTCHED_10);
@@ -102,7 +99,7 @@ public class VanillaDisplay extends ClientDisplay {
             defColor = TextColor.color(200, 0, 0);
             progress = 1.0f;
         }
-        else if (distance < Settings.getInstance().getXzDistance() &&Math.abs(distanceY)<Settings.getInstance().getyDistance()) {
+        else if (distance < Settings.getInstance().getXzDistance() &&Math.abs(distanceY)<Settings.getInstance().getYDistance()) {
             defColor = TextColor.color(TextColor.color(0, 150, 0));
             if (!reached){
                 reached = true;
@@ -130,7 +127,7 @@ public class VanillaDisplay extends ClientDisplay {
     }
 
     private String getHeightArrow(double distance){
-        if (Math.abs(distance) < Settings.getInstance().getyDistance()) {
+        if (Math.abs(distance) < Settings.getInstance().getYDistance()) {
             return "   ";
         }
         if (distance > 0){

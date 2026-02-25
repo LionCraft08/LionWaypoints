@@ -2,9 +2,7 @@ package me.yourname.lionwaypoints.listeners;
 
 import de.lioncraft.lionapi.guimanagement.guielements.GUIPlayerManager;
 import de.lioncraft.lionapi.guimanagement.lionclient.DisplayAttachment;
-import me.yourname.lionwaypoints.LionWaypoints;
 import me.yourname.lionwaypoints.chat.MessageHandler;
-import me.yourname.lionwaypoints.data.Settings;
 import me.yourname.lionwaypoints.data.texts;
 import me.yourname.lionwaypoints.data.ButtonCreators;
 import me.yourname.lionwaypoints.utilities.ClientUIManager;
@@ -122,9 +120,7 @@ public class invClickListener implements Listener {
                         p.closeInventory();
                     }
                     case "display_slot" -> inventories.setNextItem(e.getClickedInventory());
-                    case "display_offset" -> {
-                        changeNumber(e.getClickedInventory());
-                    }
+                    case "display_offset" -> changeNumber(e.getClickedInventory());
                 }
                 e.setCancelled(true);
             }
@@ -134,7 +130,7 @@ public class invClickListener implements Listener {
     }
     private void changeNumber(Inventory inv){
         ItemStack is = inv.getItem(34);
-        int value = Integer.valueOf(is.getItemMeta().getPersistentDataContainer().get(namespacedKeys.DisplayData, PersistentDataType.STRING));
+        int value = Integer.parseInt(is.getItemMeta().getPersistentDataContainer().get(namespacedKeys.DisplayData, PersistentDataType.STRING));
         value+=5;
         if (value > 25) value = 0;
         inv.setItem(34, inventories.getNumberedItem(value));

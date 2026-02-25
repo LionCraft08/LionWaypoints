@@ -22,5 +22,5 @@ public class namespacedKeys {
         BackButton = new NamespacedKey(LionWaypoints.getPlugin(), "BackButton");
         CustomButton = new NamespacedKey(LionWaypoints.getPlugin(), "custom_button");
         DisplayData = new NamespacedKey(LionWaypoints.getPlugin(), "display_data");
-    };
+    }
 }

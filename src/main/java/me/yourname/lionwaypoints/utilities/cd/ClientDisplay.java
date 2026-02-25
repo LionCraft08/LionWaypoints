@@ -2,7 +2,6 @@ package me.yourname.lionwaypoints.utilities.cd;
 
 import me.yourname.lionwaypoints.chat.MessageHandler;
 import me.yourname.lionwaypoints.utilities.waypoint;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.entity.Player;
@@ -15,9 +14,9 @@ public abstract class ClientDisplay {
         this.p = p;
     }
 
-    private waypoint waypoint;
+    private final waypoint waypoint;
     private boolean enabled;
-    private Player p;
+    private final Player p;
 
     public waypoint getWaypoint() {
         return waypoint;

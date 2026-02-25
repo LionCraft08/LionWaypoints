@@ -1,6 +1,5 @@
 package me.yourname.lionwaypoints.utilities.cd;
 
-import de.lioncraft.lionapi.LionAPI;
 import de.lioncraft.lionapi.guimanagement.lionclient.DisplayAttachment;
 import de.lioncraft.lionapi.guimanagement.lionclient.DisplayManager;
 import me.yourname.lionwaypoints.data.Settings;
@@ -11,7 +10,7 @@ public class ModdedDisplay extends ClientDisplay {
 
     public ModdedDisplay(waypoint waypoint, Player p, int offset, DisplayAttachment attachment) {
         super(waypoint, p);
-        DisplayManager.sendCompassData(p, Settings.getInstance().getXzDistance(), Settings.getInstance().getyDistance());
+        DisplayManager.sendCompassData(p, Settings.getInstance().getXzDistance(), Settings.getInstance().getYDistance());
         this.attachment = attachment;
         this.offset = offset;
     }
